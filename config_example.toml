@@ -1,0 +1,65 @@
+# tabuparse configuration file
+# This is a comprehensive example showing all available configuration options
+
+[table_structure]
+# Define the expected columns for schema normalization
+# Tables will be normalized to match this exact structure
+expected_columns = [
+    "Invoice ID",
+    "Date",
+    "Item Description", 
+    "Quantity",
+    "Unit Price",
+    "Total Amount"
+]
+
+[settings]
+# Global settings for processing
+output_format = "csv"        # "csv" or "sqlite"
+strict_schema = false        # Enable strict schema validation (fail on mismatches)
+# output_path = "custom_output.csv"  # Uncomment to set default output path
+
+[default_extraction]
+# Default extraction parameters applied to all PDFs unless overridden
+flavor = "lattice"          # "lattice" or "stream"
+pages = "all"               # "all", "1", "1,3,5", "1-3", etc.
+row_tol = 2                 # Row tolerance for stream flavor
+column_tol = 0              # Column tolerance for stream flavor
+split_text = false          # Split text that spans multiple cells
+flag_size = true            # Flag text based on font size
+strip_text = "\n"           # Characters to strip from extracted text
+
+# PDF-specific extraction parameters
+# Use multiple [[extraction_parameters]] sections for different PDFs
+
+[[extraction_parameters]]
+# Parameters for invoice batch files
+pdf_path = "invoice_batch_1.pdf"
+pages = "1-5"               # Extract only pages 1-5
+flavor = "lattice"
+# table_areas = ["72,144,432,648"]  # Uncomment to specify exact table area
+
+[[extraction_parameters]]
+# Parameters for statement files with different layout
+pdf_path = "monthly_statements.pdf"
+pages = "all"
+flavor = "stream"           # Stream works better for text-based tables
+row_tol = 5                 # Higher tolerance for irregular spacing
+split_text = true           # Split merged cells
+
+[[extraction_parameters]]
+# Parameters for specific document with table in exact location
+pdf_path = "annual_report.pdf"
+pages = "3,5-8"            # Pages 3, 5, 6, 7, 8
+flavor = "lattice"
+table_areas = [
+    "72,72,432,648",       # First table area (left,bottom,right,top in points)
+    "450,72,800,648"       # Second table area on same pages
+]
+
+[[extraction_parameters]]
+# Global fallback for any PDF not specifically configured
+# pdf_path can be omitted to apply to all unmatched PDFs
+pages = "all"
+flavor = "lattice"
+flag_size = false          # Don't use font size detection
