@@ -1,8 +1,11 @@
 <div align="center">
     <img src="https://storage.googleapis.com/lupeke.dev/_tabuparse.png" alt="tabuparse" width="250" /><br />
     <p><b>extract, transform and export PDF tabular data</b></p>
-    <p><img src="https://img.shields.io/badge/python-3.12+-blue.svg" alt="Python 3.12+" />
-        <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></p>
+    <p>
+        <img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="Python 3.10+" />
+        <img src="https://img.shields.io/badge/asyncio-ready-blueviolet" alt="asyncio support" />
+        <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" />
+    </p>
 </div>
 
 ## About
@@ -11,19 +14,19 @@
 ## Installation
 
 > [!WARNING]
-> This project is still in alpha mode. It might go sideways, so proceed with care.
+> This project is still in alpha mode and might go sideways.
 
 
 ### From source
 
 ```bash
-git clone https://github.com/lupeke/tabuparse.git
-cd tabuparse
-python -m venv .venv; source .venv/bin/activate
+git clone https://github.com/lupeke/tabuparse.git && \
+cd tabuparse && \
+python3 -m venv .venv && source .venv/bin/activate && \
 pip install -e .
 ```
 
-#### Run a heath check  
+#### Run a health check  
 ```bash
 python tests/check_install.py
 ```
