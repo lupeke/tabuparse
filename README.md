@@ -26,7 +26,7 @@ python3 -m venv .venv && source .venv/bin/activate && \
 pip install -e .
 ```
 
-#### Run a health check  
+#### Run a health check
 ```bash
 python tests/check_install.py
 ```
@@ -304,3 +304,8 @@ async def custom_pipeline():
 
 asyncio.run(custom_pipeline())
 ```
+
+
+
+<br /><hr />
+<a href="https://www.flaticon.com/free-icons/samplings" title="samplings icons">Samplings icons by Afian Rochmah Afif - Flaticon</a>
